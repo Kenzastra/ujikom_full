@@ -6,6 +6,7 @@ const Kasir = () => {
   const [idBarang, setIdBarang] = useState('');
   const [jumlahProduk, setJumlahProduk] = useState('');
   const [jumlahProdukCart, setJumlahProdukCart] = useState('');
+  const [uangBayar, setUangBayar] = useState('');
   const [hargaBarang, setHargaBarang] = useState('');
   const [dateTime, setDateTime] = useState(new Date());
 
@@ -50,22 +51,6 @@ const Kasir = () => {
   const handleQtyChange = (e, id_transaksi) => {
     const { value } = e.target;
     setJumlahProdukCart(value);
-    
-    
-
-    // Update other fields based on the changed quantity
-  //   const updatedKeranjang = keranjang.map(item => {
-  //     if (item.id_transaksi === id_transaksi) {
-  //       // Perform necessary calculations or updates based on the changed quantity
-  //       // For example, update the subtotal based on the changed quantity
-  //       const subtotal = value * item.harga_barang;
-  //       return { ...item, jumlah_produk: value, subtotal: subtotal };
-  //     }
-      
-  //     return item;
-  //   });
-
-  //   setKeranjang(updatedKeranjang);
   }
   
 
@@ -78,14 +63,29 @@ const Kasir = () => {
     }
   }
 
+  const totalHarga = () => {
+    const total = keranjang.reduce((acc, item) => acc + parseFloat(item.subtotal),0);
+    return total;
+  }
+
+  const kembalianUang = () => {
+    
+    const total = totalHarga();
+
+    const kembalian = uangBayar ? parseFloat(uangBayar) - total
+                                : ""  ;
+    return kembalian;
+
+  }
+
   useEffect(() => {
     getKeranjang(); setInterval(() => setDateTime(new Date()),1000);
   }, []);
 
   return (
     <section className="hero is-fullheight">
-      <div className="hero-body is-align-items-start">
-        <div className="container">
+      <div className="hero-body is-align-items-start pb-0">
+        <div className="container is-desktop">
           <div className="columns">
             
               <div className="column is-two-thirds has-background-warning">
@@ -95,7 +95,7 @@ const Kasir = () => {
                 </div>
                 <div className="items mt-3">
                   <p>TAMBAH ITEM</p>
-                  <form onSubmit={addKeranjang} className='is-flex is-flex-direction-row'>
+                  <form onSubmit={addKeranjang} className='is-flex is-flex-direction-row mt-3'>
                       <input type="text" name="" id="" className='input mr-2' placeholder='ID/Nama Barang' value={idBarang} onChange={(e) => setIdBarang(e.target.value)}/>
                       <input type="number" name="" placeholder='Qty' className='input mr-2' value={jumlahProduk} onChange={(e) => setJumlahProduk(e.target.value)}/>
                       <button type='submit' className='button is-info'>+</button>
@@ -130,42 +130,18 @@ const Kasir = () => {
                   </table>
                   </form>
               </div>
-              <div className="column">
-                <div className="box">
-                  <article className="media">
-                    <div className="media-left">
-                      <figure className="image is-64x64">
-                        <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image"/>
-                      </figure>
-                    </div>
-                    <div className="media-content">
-                      <div className="content">
-                        <p>
-                          <strong>John Smith</strong> <small>@johnsmith</small> <small>31m</small>
-                          <br/>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.        </p>
-                      </div>
-                      <nav className="level is-mobile">
-                        <div className="level-left">
-                          <a className="level-item" aria-label="reply">
-                            <span className="icon is-small">
-                              <i className="fas fa-reply" aria-hidden="true"></i>
-                            </span>
-                          </a>
-                          <a className="level-item" aria-label="retweet">
-                            <span className="icon is-small">
-                              <i className="fas fa-retweet" aria-hidden="true"></i>
-                            </span>
-                          </a>
-                          <a className="level-item" aria-label="like">
-                            <span className="icon is-small">
-                              <i className="fas fa-heart" aria-hidden="true"></i>
-                            </span>
-                          </a>
-                        </div>
-                      </nav>
-                    </div>
-                  </article>
+              <div className="column pt-0 ">
+                <div className="box has-background-warning is-flex is-flex-direction-column">
+                  <h1 className='title'>TOTAL</h1>
+                  <p className='input p-5 is-size-2'>{totalHarga()}</p>
+                  <div className="is-flex mt-5 is-justify-content-space-between">
+                    <p className='has-text-weight-semibold is-size-5'>Tunai</p>
+                    <input type="text" className="input" style={{width:"280px"}} value={uangBayar} onChange={(e) => setUangBayar(e.target.value) } />
+                  </div>
+                  <div className="is-flex mt-5 is-justify-content-space-between">
+                    <p className='has-text-weight-semibold is-size-5'>Kembalian</p>
+                    <input type="text" className='input' style={{width:"280px"}} value={kembalianUang()}readOnly />
+                  </div>
                 </div>
                 
               </div>
