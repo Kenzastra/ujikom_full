@@ -85,9 +85,8 @@ const Kasir = () => {
   return (
     <section className="hero is-fullheight">
       <div className="hero-body is-align-items-start pb-0">
-        <div className="container is-desktop">
+        <div className="container">
           <div className="columns">
-            
               <div className="column is-two-thirds has-background-warning">
                 <div className="items is-flex is-flex-direction-row">
                   <p className='mr-3'>TANGGAL</p>

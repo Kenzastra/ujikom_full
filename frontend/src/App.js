@@ -4,11 +4,19 @@ import Navbar from './components/Navbar';
 import DataBarang from './components/List/Barang/DataBarang';
 import Users from './components/List/User/Users';
 import Kasir from './components/Transaksi/Kasir';
+import Login from './components/Login';
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/' element={
+          <>
+          <Login/>
+          </>
+        }
+        />
+
+        <Route path='/dashboard' element={
           <>
           <Navbar/>
           <Dashboard/>
