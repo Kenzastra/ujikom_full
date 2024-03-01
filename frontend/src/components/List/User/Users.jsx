@@ -32,9 +32,10 @@ const Users = () => {
                     <li><a href="/users" className='is-active'>Users</a></li>
                   </ul>
               </aside>
-            <div className="column">
+            
   
           {/* Content */}
+          <div className="column p-5">
             <div className="container">
               <h1 className='is-size-5'>Data Users</h1>
               <table className="table is-bordered is-hoverable is-striped is-fullwidth 
@@ -63,7 +64,7 @@ const Users = () => {
                 </tbody>
               </table>
             </div>
-            </div>
+          </div>
         </div>
       </div>
     )

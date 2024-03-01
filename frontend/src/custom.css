@@ -1,15 +1,3 @@
-.border-custom th{
-    border: 1px solid;
-}
-
-.border-custom td{
-    border: 1px solid;
-}
-
-.border-custom tbody{
-    border: 1px solid;
-}
-
 .navbar-item:hover{
     background-color: #3E8ED0 !important;
 }
@@ -41,6 +29,6 @@ a.box:hover p{
     transition: color 1s;
 }
 
-@keyframes rotate{
-    
+.logo{
+    font-family: 'Anta', sans-serif;
 }

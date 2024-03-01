@@ -1,5 +1,7 @@
 import React,{useState, useEffect} from 'react';
 import axios from "axios";
+import { Link } from 'react-router-dom';
+import {FaPlus, FaMinus, FaPenToSquare} from "react-icons/fa6"
 
 const DataBarang = () => {
   const [barang, setBarang] = useState([]);
@@ -32,9 +34,10 @@ const DataBarang = () => {
                   <li><a href="/users">Users</a></li>
                 </ul>
             </aside>
-          <div className="column">
+          
 
         {/* Content */}
+        <div className="column p-5">
           <div className="container">
             <h1 className='is-size-5'>Data Barang</h1>
             <table className="table is-bordered is-hoverable is-striped is-fullwidth 
@@ -59,11 +62,15 @@ const DataBarang = () => {
                     <td>{data.satuan_barang}</td>
                     <td>{data.stok_barang}</td>
                     <td>{data.harga_barang}</td>
-                    <td></td>
+                    <td>
+                      <button className='button is-danger ml-3'>Hapus</button>
+                      <button className='button is-info ml-3'>Edit</button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
             </table>
+            <button className='button is-success'><Link to={`/barang/add`} className='has-text-white'>Tambah Barang</Link></button>
           </div>
           </div>
       </div>

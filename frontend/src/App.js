@@ -5,6 +5,8 @@ import DataBarang from './components/List/Barang/DataBarang';
 import Users from './components/List/User/Users';
 import Kasir from './components/Transaksi/Kasir';
 import Login from './components/Login';
+import FormUpdateBarang from './components/List/Barang/FormUpdateBarang';
+import FormAddBarang from './components/List/Barang/FormAddBarang';
 function App() {
   return (
     <BrowserRouter>
@@ -24,6 +26,8 @@ function App() {
         }
         />
 
+        {/* Barang */}
+
         <Route path='/barang' element={
           <>
           <Navbar/>
@@ -32,6 +36,22 @@ function App() {
         }
         />
 
+        <Route path='/barang/add' element={
+          <>
+          <Navbar/>
+          <FormAddBarang/>
+          </>
+        }/>
+
+        <Route path='/barang/edit/:id' element={
+          <>
+          <Navbar/>
+          <FormUpdateBarang/>
+          </>
+        }/>
+
+        {/* User */}
+
         <Route path='/users' element={
           <>
           <Navbar/>
@@ -39,6 +59,8 @@ function App() {
           </>
         }
         />
+
+        {/* Kasir */}
 
         <Route path='/kasir' element={
           <>
