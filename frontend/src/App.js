@@ -1,12 +1,15 @@
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
-import Dashboard from './components/Dashboard';
+import Dashboard from './pages/Dashboard';
 import Navbar from './components/Navbar';
-import DataBarang from './components/List/Barang/DataBarang';
-import Users from './components/List/User/Users';
+import Barang from './pages/Barang';
+import Users from './pages/Users';
 import Kasir from './components/Transaksi/Kasir';
 import Login from './components/Login';
-import FormUpdateBarang from './components/List/Barang/FormUpdateBarang';
-import FormAddBarang from './components/List/Barang/FormAddBarang';
+import FormUpdateBarang from './pages/EditBarang';
+import FormAddBarang from './pages/AddBarang';
+import FormAddUser from './pages/AddUser';
+import FormEditUser from './pages/EditUser';
+
 function App() {
   return (
     <BrowserRouter>
@@ -18,47 +21,23 @@ function App() {
         }
         />
 
-        <Route path='/dashboard' element={
-          <>
-          <Navbar/>
-          <Dashboard/>
-          </>
-        }
-        />
+        <Route path='/dashboard' element={<Dashboard/>}/>
 
         {/* Barang */}
 
-        <Route path='/barang' element={
-          <>
-          <Navbar/>
-          <DataBarang/>
-          </>
-        }
-        />
+        <Route path='/barang' element={<Barang/>}/>
 
-        <Route path='/barang/add' element={
-          <>
-          <Navbar/>
-          <FormAddBarang/>
-          </>
-        }/>
+        <Route path='/barang/add' element={<FormAddBarang/>}/>
 
-        <Route path='/barang/edit/:id' element={
-          <>
-          <Navbar/>
-          <FormUpdateBarang/>
-          </>
-        }/>
+        <Route path='/barang/edit/:id_barang' element={<FormUpdateBarang/>}/>
 
         {/* User */}
 
-        <Route path='/users' element={
-          <>
-          <Navbar/>
-          <Users/>
-          </>
-        }
-        />
+        <Route path='/user' element={<Users/>}/>
+
+        <Route path='/user/add' element={<FormAddUser/>}/>
+
+        <Route path='/user/edit/:id_user' element={<FormEditUser/>}/>
 
         {/* Kasir */}
 

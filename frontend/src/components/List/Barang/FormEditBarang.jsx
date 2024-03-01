@@ -1,15 +1,24 @@
-import React, {useState, useEffect} from 'react';
-import axios from 'axios';
-import {useNavigate} from 'react-router-dom';
+import React, {useState, useEffect} from 'react'
+import axios from 'axios'
+import { useNavigate, useParams } from 'react-router-dom'
 
-const FormAddBarang = () => {
+const FormEditBarang = () => {
   const [namaBarang, setNamaBarang] = useState('')
   const [satuanBarang, setSatuanBarang] = useState('')
   const [stokBarang, setStokBarang] = useState('')
   const [hargaBarang, setHargaBarang] = useState('')
+  const {id_barang} = useParams('');
   const navigate = useNavigate();
 
-  const addBarang = async(e) => {
+  const getBarangById = async() => {
+    const response = await axios.get(`http://localhost:5000/barang/${id_barang}`);
+    setNamaBarang(response.data.nama_barang);
+    setSatuanBarang(response.data.satuan_barang);
+    setStokBarang(response.data.stok_barang);
+    setHargaBarang(response.data.harga_barang);
+  }
+
+  const editBarang = async(e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("nama_barang", namaBarang);
@@ -17,7 +26,7 @@ const FormAddBarang = () => {
     formData.append("stok_barang", stokBarang);
     formData.append("harga_barang", hargaBarang);
     try {
-      await axios.post("http://localhost:5000/barang", formData, {
+      await axios.patch(`http://localhost:5000/barang/${id_barang}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data"
         },
@@ -28,11 +37,15 @@ const FormAddBarang = () => {
     }
   };
 
+  useEffect(() => {
+    getBarangById()
+}, []);
+
   return (
-    <div className='container'>
+        <div className='container'>
         <div className="box is-fullwidth">
             <p className='title'>ADD BARANG</p>
-            <form className='form' onSubmit={addBarang}>
+            <form className='form' onSubmit={editBarang}>
                 <div className="is-flex is-align-items-center">  
                     <label htmlFor="" className='label'> Nama Barang</label>
                     <input type="text" className='input ml-3' style={{width:"200px"}} value={namaBarang} onChange={(e) => setNamaBarang(e.target.value)}/>
@@ -45,12 +58,12 @@ const FormAddBarang = () => {
                 </div>
                 <div className="mt-5">
                   <button className='button is-success'>Tambah</button>
-                  <a href="../barang" className='button is-danger ml-3'>Batal</a>
+                  <a href="/barang" className='button is-danger ml-3'>Batal</a>
                 </div>                
             </form>
         </div>
-    </div>  
+    </div>
   )
 }
 
-export default FormAddBarang
+export default FormEditBarang

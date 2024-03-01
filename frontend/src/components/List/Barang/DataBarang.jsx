@@ -11,35 +11,22 @@ const DataBarang = () => {
     setBarang(response.data);
   }
 
+  const deleteBarang = async (id_barang) => {    
+    try {
+      await axios.delete(`http://localhost:5000/barang/${id_barang}`);
+    getBarang();
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
     getBarang();
   }, []);
 
   return (
-    <div className='columns mt-0'>
-      <div className=" is-flex is-flex-direction-row is-fullwidth" style={{width:"100%"}}>
-        {/* Sidebar */}
-          <aside className="column menu has-background-black-ter is-one-fifth" style={{height:"100vh", flex:"none", width:"15%" }}>
-                <p className='menu-label p-2 is-size-6'>
-                    General
-                </p>
-                <ul className="menu-list">
-                    <li><a href="/" className=''>Dashboard</a></li>
-                    <li><a href="/barang" className='is-active'>Barang</a></li>
-                </ul>
-                <p className="menu-label p-2 is-size-6">
-                  Admin
-                </p>
-                <ul className="menu-list">
-                  <li><a href="/users">Users</a></li>
-                </ul>
-            </aside>
-          
-
-        {/* Content */}
-        <div className="column p-5">
-          <div className="container">
-            <h1 className='is-size-5'>Data Barang</h1>
+        <div className="container p-3">
+          <h1 className='is-size-5'>Data Barang</h1>
             <table className="table is-bordered is-hoverable is-striped is-fullwidth 
             is-fullwidth mt-5 border-custom">
               <thead className='border-custom'>
@@ -63,18 +50,15 @@ const DataBarang = () => {
                     <td>{data.stok_barang}</td>
                     <td>{data.harga_barang}</td>
                     <td>
-                      <button className='button is-danger ml-3'>Hapus</button>
-                      <button className='button is-info ml-3'>Edit</button>
+                      <button className='button is-info ml-3'><Link to={`/barang/edit/${data.id_barang}`} className='has-text-white'>Edit</Link></button>
+                      <button className='button is-danger ml-3' onClick={() => deleteBarang(data.id_barang)}>Hapus</button>
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
             <button className='button is-success'><Link to={`/barang/add`} className='has-text-white'>Tambah Barang</Link></button>
-          </div>
-          </div>
       </div>
-    </div>
   )
 }
 
