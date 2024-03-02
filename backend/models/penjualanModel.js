@@ -14,6 +14,14 @@ const Penjualan = db.define('penjualan',{
         type:DataTypes.DATE,
         defaultValue:DataTypes.NOW,
     },
+    uang_pembayaran:{
+        type:DataTypes.DECIMAL,
+        allowNull:true
+    },
+    kembalian:{
+        type:DataTypes.DECIMAL,
+        allowNull:true
+    },
     total_harga:{
         type:DataTypes.DECIMAL,
         allowNull:true
@@ -22,6 +30,7 @@ const Penjualan = db.define('penjualan',{
     freezeTableName:true
 });
 
-Details.belongsTo(Penjualan,{foreignKey:"id_penjualan"})
+Details.belongsTo(Penjualan,{foreignKey:"id_penjualan"});
+Penjualan.hasMany(Details, {foreignKey:"id_penjualan"});
 
 export default Penjualan;

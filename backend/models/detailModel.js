@@ -32,4 +32,5 @@ const Details = db.define('details',{
 
 Details.belongsTo(Barangs,{foreignKey:"id_barang"});
 
+
 export default Details;

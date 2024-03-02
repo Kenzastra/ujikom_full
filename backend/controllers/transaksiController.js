@@ -21,7 +21,7 @@ export const getKeranjangById = async(req,res) => {
 
 export const createKeranjang = async(req,res) => {
     
-    const {id_barang,jumlah_produk,total} = req.body;
+    const {id_barang,jumlah_produk} = req.body;
     const barang = await Barangs.findOne({
         where:{
             id_barang: req.body.id_barang
@@ -88,6 +88,8 @@ export const deleteKeranjang = async(req,res) => {
 }
 
 export const Checkout = async(req,res) => {
+    const {kembalian, uang_pembayaran, total} = req.body;
+
     const penjualan = await Penjualan.create();
 
     const id_penjualan = penjualan.id_penjualan;
@@ -121,11 +123,11 @@ export const Checkout = async(req,res) => {
             })
 
         }
-        
-        const total_harga = dataKeranjang.reduce((acc, item) => acc + item.subtotal,0)
 
         await Penjualan.update({
-            total_harga: total_harga
+            uang_pembayaran: uang_pembayaran,
+            kembalian: kembalian,
+            total_harga: total
         },{
             where:{id_penjualan:id_penjualan}
         });

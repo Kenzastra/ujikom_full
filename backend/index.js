@@ -20,6 +20,7 @@ import transaksiRoute from "./route/transaksiRoute.js";
 import barangRoute from "./route/barangRoute.js";
 import userRoute from "./route/userRoute.js";
 import authRoute from "./route/authRoute.js";
+import penjualanRoute from "./route/penjualanRoute.js";
 
 const app = express();
 
@@ -59,6 +60,7 @@ app.use(
     transaksiRoute,
     barangRoute,
     userRoute,
-    authRoute);
+    authRoute,
+    penjualanRoute);
 
 app.listen(process.env.APP_PORT, () => console.log("Server up and running..."));
