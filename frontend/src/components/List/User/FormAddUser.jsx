@@ -30,7 +30,7 @@ const FormAddUser = () => {
     };
 
   return (
-    <div className='container'>
+    <div className='container p-3'>
         <div className="box is-fullwidth is-flex is-flex-direction-column">
             <p className='title'>ADD NEW USER</p>
             <form className='form' onSubmit={addUser}>

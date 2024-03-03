@@ -1,11 +1,13 @@
-import React,{useEffect} from 'react'
-import Layout from './Layout'
+import React, {useEffect} from 'react'
+import RiwayatDetail from '../components/Transaksi/RiwayatDetail'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { getMe } from '../features/authSlice'
-import FormAddUser from '../components/List/User/FormAddUser'
+import Layout from './Layout'
 
-const AddUser = () => {
+
+const RiwayatDetailPage = () => {
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const {isError} = useSelector((state => state.auth));
@@ -21,9 +23,9 @@ const AddUser = () => {
     }, [isError, navigate]);
   return (
     <Layout>
-        <FormAddUser/>
+        <RiwayatDetail/>
     </Layout>
   )
 }
 
-export default AddUser
+export default RiwayatDetailPage

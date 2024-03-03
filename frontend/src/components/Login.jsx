@@ -49,7 +49,7 @@ const Login = () => {
                         <input type="password" className='input' placeholder='Password' value={password} onChange={(e)=> setPassword(e.target.value)}/>
                     </div>
                   </div>
-                <button type="submit" className='button is-success is-fullwidth mt-3'>{isLoading ? 'Loading...' : "Login"}</button>
+                <button type="submit" className='button is-success is-fullwidth mt-3'>{isLoading ? 'Loading...' : Login}</button>
               </form>
             </div>
           </div>

@@ -1,7 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import axios from "axios";
 import { Link } from 'react-router-dom';
-import {FaPlus, FaMinus, FaPenToSquare} from "react-icons/fa6"
 
 const DataBarang = () => {
   const [barang, setBarang] = useState([]);
@@ -19,6 +18,11 @@ const DataBarang = () => {
       console.log(error)
     }
   }
+
+  const formatRupiah = (angka) => {
+    if (!angka) return ''; // Handle undefined or null values
+    return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(angka);
+}
 
   useEffect(() => {
     getBarang();
@@ -48,7 +52,7 @@ const DataBarang = () => {
                     <td>{data.nama_barang}</td>
                     <td>{data.satuan_barang}</td>
                     <td>{data.stok_barang}</td>
-                    <td>{data.harga_barang}</td>
+                    <td>{formatRupiah(data.harga_barang)}</td>
                     <td>
                       <button className='button is-info ml-3'><Link to={`/barang/edit/${data.id_barang}`} className='has-text-white'>Edit</Link></button>
                       <button className='button is-danger ml-3' onClick={() => deleteBarang(data.id_barang)}>Hapus</button>

@@ -7,6 +7,7 @@ const FormAddBarang = () => {
   const [satuanBarang, setSatuanBarang] = useState('')
   const [stokBarang, setStokBarang] = useState('')
   const [hargaBarang, setHargaBarang] = useState('')
+  const [msg,SetMsg] = useState('');
   const navigate = useNavigate();
 
   const addBarang = async(e) => {
@@ -24,15 +25,18 @@ const FormAddBarang = () => {
       });
       navigate("/barang")
     } catch (error) {
-      console.log(error);
+      if(error.response) {
+        SetMsg(error.response.data.msg)
+      }
     }
   };
 
   return (
-    <div className='container'>
+    <div className='container p-3'>
         <div className="box is-fullwidth">
             <p className='title'>ADD BARANG</p>
             <form className='form' onSubmit={addBarang}>
+            <p className="has-text-centered">{msg}</p>
                 <div className="is-flex is-align-items-center">  
                     <label htmlFor="" className='label'> Nama Barang</label>
                     <input type="text" className='input ml-3' style={{width:"200px"}} value={namaBarang} onChange={(e) => setNamaBarang(e.target.value)}/>

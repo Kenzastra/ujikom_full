@@ -1,14 +1,15 @@
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
-import Navbar from './components/Navbar';
 import Barang from './pages/Barang';
 import Users from './pages/Users';
-import Kasir from './components/Transaksi/Kasir';
 import Login from './components/Login';
 import FormUpdateBarang from './pages/EditBarang';
 import FormAddBarang from './pages/AddBarang';
 import FormAddUser from './pages/AddUser';
 import FormEditUser from './pages/EditUser';
+import KasirPage from './pages/KasirPage';
+import RiwayatPage from './pages/RiwayatPage';
+import RiwayatDetailPage from './pages/RiwayatDetailPage';
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
           </>
         }
         />
+
+        {/* Dashboard */}
 
         <Route path='/dashboard' element={<Dashboard/>}/>
 
@@ -39,15 +42,14 @@ function App() {
 
         <Route path='/user/edit/:id_user' element={<FormEditUser/>}/>
 
-        {/* Kasir */}
+        {/* Transaksi */}
 
-        <Route path='/kasir' element={
-          <>
-          <Navbar/>
-          <Kasir/>
-          </>
-        }
-        />
+        <Route path='/kasir' element={<KasirPage/>}/>
+
+        <Route path='/riwayat' element={<RiwayatPage/>}/>
+
+        <Route path='/riwayat/:id_penjualan' element={<RiwayatDetailPage/>}/>
+        
       </Routes>
     </BrowserRouter>
   );

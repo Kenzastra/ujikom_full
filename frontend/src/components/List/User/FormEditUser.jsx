@@ -39,13 +39,13 @@ const FormEditUser = () => {
   };
 
   useEffect(() => {
-    getUserById()
+    getUserById();
 }, []);
 
   return (
-    <div className='container'>
+    <div className='container p-3'>
     <div className="box is-fullwidth is-flex is-flex-direction-column">
-        <p className='title'>ADD NEW USER</p>
+        <p className='title'>EDIT USER</p>
         <form className='form' onSubmit={editUser}>
         <p className="has-text-centered">{msg}</p>                 
         <div className="field">

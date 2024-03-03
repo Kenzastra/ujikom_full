@@ -24,7 +24,6 @@ const Navbar = () => {
               <p className='is-size-3 has-text-weight-bold has-text-white logo'>KKASIR</p>
             </NavLink>
           </div>  
-          <div className="navbar-menu">
             <div className="navbar-end">
               <div className="navbar-item">
                 <div className="buttons">
@@ -32,7 +31,6 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-          </div>
         </nav>
     </div>
     

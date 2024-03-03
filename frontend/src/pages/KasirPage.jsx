@@ -1,11 +1,12 @@
-import React,{useEffect} from 'react'
-import Layout from './Layout'
+import React, {useEffect} from 'react'
+import Navbar from '../components/Navbar'
+import Kasir from '../components/Transaksi/Kasir'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { getMe } from '../features/authSlice'
-import FormAddUser from '../components/List/User/FormAddUser'
 
-const AddUser = () => {
+const KasirPage = () => {
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const {isError} = useSelector((state => state.auth));
@@ -20,10 +21,11 @@ const AddUser = () => {
        }
     }, [isError, navigate]);
   return (
-    <Layout>
-        <FormAddUser/>
-    </Layout>
+    <div>
+        <Navbar/>
+        <Kasir/>
+    </div>
   )
 }
 
-export default AddUser
+export default KasirPage
