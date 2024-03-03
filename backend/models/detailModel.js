@@ -33,7 +33,7 @@ const Details = db.define('details',{
     freezeTableName:true
 });
 
-Details.belongsTo(Barangs,{foreignKey:"id_barang"});
+Details.belongsTo(Barangs,{foreignKey:"id_barang" , onUpdate:"CASCADE"});
 
 
 export default Details;
