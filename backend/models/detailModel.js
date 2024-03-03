@@ -20,6 +20,9 @@ const Details = db.define('details',{
     nama_barang:{
         type: DataTypes.STRING
     },
+    harga_barang:{
+        type:DataTypes.INTEGER
+    },
     jumlah_produk:{
         type:DataTypes.INTEGER
     },

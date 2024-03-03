@@ -17,6 +17,23 @@ export const getPenjualan = async(req,res) => {
     }
 }
 
+export const getPenjualanById = async(req,res) => {
+    try {
+        const response = await Penjualan.findOne({
+            include:{
+                model: Details,
+                attributes:['id_barang', 'nama_barang', 'harga_barang','jumlah_produk', 'subtotal']
+            },
+            where:{
+                id_penjualan:req.params.id_penjualan
+            }
+        });
+        res.json(response);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 export const createPenjualan = async(req,res) => {
     try {
         const penjualan = await Penjualan.create();

@@ -114,6 +114,12 @@ export const Checkout = async(req,res) => {
                 }
             })
 
+            if(
+                keranjang.jumlah_produk > barang.stok_barang
+            ) {
+                return res.status(400).json({msg:"Tidak Boleh Melebihi Stok!"})
+            }
+
             await Barangs.update({
                 stok_barang: barang.stok_barang - keranjang.jumlah_produk
             },{
